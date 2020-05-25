@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body >
+<canvas id="test1" width="1000" height="1000" style="border: 1px solid aqua;">
+
+</canvas>
+</body>
+<script>
+    let a = document.getElementById("test1")
+    //圆角矩形
+    let CirRect = (ctx,x,y,width,height,radius) => {
+        ctx.beginPath();
+        ctx.moveTo(x,y+radius);
+        ctx.lineTo(x,y+height-radius);
+        ctx.quadraticCurveTo(x,y+height,x+radius,y+height);
+        ctx.lineTo(x+width-radius,y+height)
+        ctx.quadraticCurveTo(x+width,y+height,x+width,y+height-radius);
+        ctx.lineTo(x+width,y+radius);
+        ctx.quadraticCurveTo(x+width,y,x+width-radius,y);
+        ctx.lineTo(x+radius,y);
+        ctx.quadraticCurveTo(x,y,x,y+radius);
+        ctx.stroke();
+    }
+    //怪物
+    let XiaoRen = (c,adx,ady,color) =>{
+        // let adx = ;
+        // let ady = 400;
+        c.fillStyle=color;
+        c.beginPath();
+        c.moveTo(83+adx, 116+ady);
+        c.lineTo(83+adx, 102+ady);
+        c.bezierCurveTo(83+adx, 94+ady, 89+adx, 88+ady, 97+adx, 88+ady);
+        c.bezierCurveTo(105+adx, 88+ady, 111+adx, 94+ady, 111+adx, 102+ady);
+        c.lineTo(111+adx, 116+ady);
+        c.lineTo(106.333+adx, 111.333+ady);
+        c.lineTo(101.666+adx, 116+ady);
+        c.lineTo(97+adx, 111.333+ady);
+        c.lineTo(92.333+adx, 116+ady);
+        c.lineTo(87.666+adx, 111.333+ady);
+        c.lineTo(83+adx, 116+ady);
+        c.fill();
+    }
+    let draw = () =>{
+        if (a.getContext) {
+            let c = a.getContext("2d");
+            let x = 150;
+            let y = 150;
+            CirRect(c,100,100,700,500,10);
+            CirRect(c,x,y,150,75,7);
+            CirRect(c,x,y+120,150,160,7);
+
+            CirRect(c,x,y+320,150,85,7);
+            // CirRect(c,x,y,150,75,7);
+            //第二列
+            CirRect(c,190+x,y,100,150,7);
+            CirRect(c,190+x,y+190,100,200,7);
+            // CirRect(c,190+x,y+190,100,150,7);
+            CirRect(c,190+x+150,y,140,100,7);
+            CirRect(c,190+x+150+180,y,80,100,7);
+            CirRect(c,669-170,y+152,250,150,7);
+            CirRect(c,669-170,y+301,220,100,7);
+            c.clearRect(667-170+220,y+310+18,5,48)
+        //314 190+314
+            //吃豆豆
+            c.beginPath();
+            c.fillStyle="#ffd31d";
+            c.arc(175, 120, 13, Math.PI / 7, -Math.PI / 7, false);
+            c.lineTo(175, 120);
+            c.fill();
+            c.fillStyle="#79d70f";
+            //横向
+            for (let i=1 ; i <= 30; i++){
+                c.fillRect(183+i*19,115,9,9)
+            }
+            for (let i=1 ; i <= 9; i++){
+                c.fillRect(120+i*19,147+5*19,9,9)
+            }
+            for (let i = 0 ; i < 8 ; i++){
+                c.fillRect(314+i*19+19,312,9,9,)
+            }
+            for (let i = 0 ; i < 9 ; i++){
+                c.fillRect(460+i*19+19,273,9,9,)
+            } for (let i = 0 ; i < 6 ; i++){
+                c.fillRect(642+i*19+19,273,9,9,)
+            }
+            for (let i=1 ; i <= 9; i++){
+                c.fillRect(120+i*19,445,9,9)
+            }
+            for (let i=1 ; i <= 9; i++){
+                c.fillRect(120+i*19,570,9,9)
+            }
+            for (let i=1 ; i <= 23; i++){
+                c.fillRect(135+19*10+i*19,570,9,9)
+            }
+            //纵向
+
+            for (let i = 0 ; i <24 ; i++){
+                c.fillRect(316,135+i*19,9,9,)
+            }
+            for (let i = 0 ; i <9 ; i++){
+                c.fillRect(462,137+i*19,9,9,)
+            }
+            for (let i = 0 ; i <13 ; i++){
+                c.fillRect(462,137+19*10+i*19,9,9,)
+            }
+            for (let i = 0 ; i < 8 ; i++){
+                c.fillRect(645,137+i*19,9,9,)
+            }
+            for (let i = 0 ; i < 24 ; i++){
+                c.fillRect(773,137-19+i*19,9,9,)
+            }
+            for (let i = 0 ; i <23 ; i++){
+                c.fillRect(115,150+i*19,9,9,)
+            }
+            for (let i = 0 ; i <9 ; i++){
+                c.fillRect(462,137+i*19,9,9,)
+            }
+            XiaoRen(c,650,400,"#eb6383");
+            XiaoRen(c,590,400,"#fa9191");
+            XiaoRen(c,530,400,"#ffe9c5");
+            XiaoRen(c,470,400,"#b4f2e1");
+
+
+            // for (let i = 1; i <= 5 ; i++){
+            //     for (let j = 1;j <=5 ; j++){
+            //         CirRect(c,100*j+1,100*j+10,100+i,100+i,5);
+            //     }
+            // }
+
+            // c.fillStyle="#dd2c00";
+            // c.beginPath();
+            // c.moveTo(100,150)
+            // c.bezierCurveTo(149,50,151,50,200,150)
+            // c.moveTo(100,150)
+            // c.bezierCurveTo(125,180,175,180,200,150)
+            // c.fill()
+            // c.fillStyle="#000"
+            // c.moveTo(100,150)
+            // c.lineTo(200,150)
+            // c.stroke()
+            // c.arc(150,150,50,0,Math.PI,false)
+        }else {
+        }
+    }
+    draw()
+
+</script>
+</html>
